@@ -1,10 +1,10 @@
-# KIP BANK
+# RPI BANK
 
 A satirical, cyber-themed banking website for the fictional KIPCOIN cryptocurrency.
 
 ## Description
 
-KIP BANK is a humorous web application designed to parody cryptocurrency projects and banks. It features a striking black and green cyber-themed design with glowing neon effects. The website includes several pages:
+RPI BANK is a humorous web application designed to parody cryptocurrency projects and banks. It features a striking black and green cyber-themed design with glowing neon effects. The website includes several pages:
 
 - Homepage with an animated token display and info sections
 - Token page with detailed information about KIPCOIN
