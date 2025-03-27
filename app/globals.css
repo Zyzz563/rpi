@@ -1,26 +1,715 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Импорт современных шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --portal-green: 92, 255, 50;
+  --portal-pink: 255, 54, 171;
+  --toxic-green: 118, 255, 3;
+  --rick-dark: 29, 17, 31;
+  --rick-panel: 34, 8, 51;
+  
+  /* Rick and Morty цвета */
+  --rick-green: #5cff32;
+  --rick-pink: #ff36ab;
+  --rick-blue: #36c5f4;
+  --rick-yellow: #c6ff00;
+  --rick-purple: #220833;
+  --rick-dark-purple: #1d111f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Применяем шрифты глобально */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: 
+    linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23390d63' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    rgb(29, 17, 31);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--portal-green), 0.7) rgba(var(--background-end-rgb), 0.5);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(var(--portal-green), 0.03) 3px,
+    transparent 3px,
+    transparent 8px
+  );
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(var(--portal-green), 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(var(--portal-pink), 0.07) 0%, transparent 30%);
+  z-index: 9998;
+}
+
+/* Заголовки используют более современный технологичный шрифт */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Chakra Petch', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Стилизация курсора для всего сайта */
+* {
+  cursor: url('/cursor.png'), auto !important;
+}
+
+/* Общие анимации */
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px var(--rick-green), 0 0 10px var(--rick-green); }
+  50% { text-shadow: 0 0 20px var(--rick-green), 0 0 30px var(--rick-green); }
+  100% { text-shadow: 0 0 5px var(--rick-green), 0 0 10px var(--rick-green); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(-3px, -3px); }
+  60% { transform: translate(3px, 3px); }
+  80% { transform: translate(3px, -3px); }
+  100% { transform: translate(0); }
+}
+
+/* Новая анимация для навбара */
+@keyframes navbar-glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(1px, 0); filter: hue-rotate(90deg); }
+  50% { transform: translate(-1px, 0); filter: hue-rotate(180deg); }
+  75% { transform: translate(1px, 0); filter: hue-rotate(270deg); }
+  100% { transform: translate(0); filter: none; }
+}
+
+/* Анимация для дропдаунов в навбаре */
+@keyframes dropdown-appear {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Анимация для мобильного меню */
+@keyframes mobile-menu-slide {
+  0% { max-height: 0; opacity: 0; }
+  100% { max-height: 1000px; opacity: 1; }
+}
+
+/* Анимация для кнопки Telegram */
+@keyframes telegram-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(54, 197, 244, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(54, 197, 244, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(54, 197, 244, 0); }
+}
+
+/* Применяем глобальные стили */
+.crt-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Скан-линии для CRT эффекта */
+.scan-lines {
+  position: relative;
+}
+
+.scan-lines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.15;
+}
+
+/* Стилизация панелей */
+.rickified-panel {
+  background: rgba(34, 8, 51, 0.6);
+  border: 1px solid var(--rick-green);
+  box-shadow: 0 0 20px rgba(92, 255, 50, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.rickified-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, rgba(92, 255, 50, 0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(92, 255, 50, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+/* Стили для навигации */
+.logo-shadow {
+  text-shadow: 0 0 10px rgba(92, 255, 50, 0.7);
+}
+
+.portal-glow {
+  text-shadow: 0 0 8px currentColor;
+  animation: glow 3s infinite;
+}
+
+.dropdown-animation {
+  animation: dropdown-appear 0.3s ease-out forwards;
+}
+
+.mobile-menu-animation {
+  animation: mobile-menu-slide 0.4s ease-out forwards;
+  overflow: hidden;
+}
+
+/* Стили для кнопки Telegram */
+.telegram-btn {
+  position: relative;
+  overflow: hidden;
+  animation: telegram-pulse 2s infinite;
+}
+
+.telegram-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.telegram-btn:hover::before {
+  left: 100%;
+}
+
+/* Анимация для фона портала */
+.portal-background {
+  position: relative;
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(92, 255, 50, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 255, 50, 0.05) 1px, transparent 1px);
+}
+
+.portal-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(54, 197, 244, 0.1),
+      rgba(29, 17, 31, 0) 70%
+    );
+  pointer-events: none;
+}
+
+/* Эффект глича для текста Рика */
+.rick-glitch {
+  position: relative;
+}
+
+.rick-glitch::before,
+.rick-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.rick-glitch::before {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  animation-delay: 0.1s;
+  color: var(--rick-pink);
+  z-index: -1;
+}
+
+.rick-glitch::after {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  animation-delay: 0.2s;
+  color: var(--rick-blue);
+  z-index: -2;
+}
+
+.rick-glitch:hover::before,
+.rick-glitch:hover::after {
+  opacity: 0.5;
+}
+
+/* Анимация для кнопок с эффектом портала */
+.portal-btn-green {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.portal-btn-green::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--rick-green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.portal-btn-green:hover::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0.1;
+}
+
+.portal-btn-pink {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.portal-btn-pink::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--rick-pink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.portal-btn-pink:hover::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0.1;
+}
+
+/* Пульсирующая кнопка */
+.portal-pulse-btn {
+  animation: pulse 2s infinite;
+}
+
+/* Анимация глича для портала */
+@keyframes portal-glitch {
+  0% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: translateX(5px);
+    filter: hue-rotate(90deg) brightness(1.2);
+  }
+  50% {
+    transform: translateX(-5px);
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    transform: translateX(5px);
+    filter: hue-rotate(270deg) brightness(0.8);
+  }
+  100% {
+    transform: translateX(0);
+    filter: hue-rotate(360deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-portal-glitch {
+  animation: portal-glitch 0.3s linear;
+}
+
+/* Флотирующие формулы */
+.floating-formulas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.formula {
+  position: absolute;
+  color: var(--rick-green);
+  font-size: 2rem;
+  opacity: 0.1;
+  animation: float linear infinite;
+}
+
+/* Стили для экрана с глюком */
+.screen-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.screen-glitch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(92, 255, 50, 0.2) 10%,
+    transparent 12%,
+    transparent 100%
+  );
+  background-size: 300% 100%;
+  animation: screen-glitch 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes screen-glitch {
+  0% { background-position: 100% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Бэкдроп фильтры для элементов */
+.backdropBlur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Стили для сетки портала в фоне */
+.bg-portal-grid {
+  background: 
+    linear-gradient(90deg, var(--rick-green) 1px, transparent 1px),
+    linear-gradient(0deg, var(--rick-green) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Анимация движения курсора с химией */
+@keyframes float-formula {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) rotate(var(--r)); opacity: 0; }
+}
+
+/* Стили для неоновых кнопок */
+.neon-btn-green {
+  display: inline-block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #5cff32;
+  border: 2px solid #5cff32;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 2px;
+  box-shadow: 0 0 0.5rem #5cff32, inset 0 0 0.5rem #5cff32;
+  text-shadow: 0 0 0.125em #fff, 0 0 0.45em #5cff32;
+}
+
+.neon-btn-green:hover {
+  box-shadow: 0 0 1rem #5cff32, inset 0 0 1rem #5cff32;
+  text-shadow: 0 0 0.2em #fff, 0 0 0.6em #5cff32;
+  background: rgba(92, 255, 50, 0.1);
+  transform: translateY(-5px);
+}
+
+.neon-btn-pink {
+  display: inline-block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #ff36ab;
+  border: 2px solid #ff36ab;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 2px;
+  box-shadow: 0 0 0.5rem #ff36ab, inset 0 0 0.5rem #ff36ab;
+  text-shadow: 0 0 0.125em #fff, 0 0 0.45em #ff36ab;
+}
+
+.neon-btn-pink:hover {
+  box-shadow: 0 0 1rem #ff36ab, inset 0 0 1rem #ff36ab;
+  text-shadow: 0 0 0.2em #fff, 0 0 0.6em #ff36ab;
+  background: rgba(255, 54, 171, 0.1);
+  transform: translateY(-5px);
+}
+
+.neon-btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Эффекты для кнопок */
+.neon-btn-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: currentColor;
+  z-index: -1;
+}
+
+.neon-btn-green:hover .neon-btn-glitch,
+.neon-btn-pink:hover .neon-btn-glitch {
+  animation: glitch-btn 0.3s ease infinite;
+}
+
+@keyframes glitch-btn {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  1% {
+    transform: translate(-2px, 2px);
+    opacity: 0.1;
+  }
+  2% {
+    transform: translate(2px, -2px);
+    opacity: 0.1;
+  }
+  3% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+/* Мигание кнопки */
+.neon-btn-blink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: currentColor;
+  opacity: 0;
+}
+
+.neon-btn-green:hover .neon-btn-blink,
+.neon-btn-pink:hover .neon-btn-blink {
+  animation: blink-btn 4s infinite;
+}
+
+@keyframes blink-btn {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.05;
+  }
+  6% {
+    opacity: 0;
+  }
+  94% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Кнопка супер-призыва к действию */
+.mega-neon-btn {
+  display: inline-block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 1.25rem 2.5rem;
+  color: white;
+  background: linear-gradient(45deg, #5cff32, #36c5f4, #ff36ab);
+  background-size: 200% 200%;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 30px rgba(92, 255, 50, 0.5),
+    0 0 60px rgba(54, 197, 244, 0.3),
+    0 0 90px rgba(255, 54, 171, 0.1);
+  animation: gradient-shift 5s ease infinite;
+}
+
+.mega-neon-btn:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 
+    0 0 40px rgba(92, 255, 50, 0.6),
+    0 0 80px rgba(54, 197, 244, 0.4),
+    0 0 120px rgba(255, 54, 171, 0.2);
+  letter-spacing: 4px;
+}
+
+.mega-neon-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mega-neon-btn:hover .mega-neon-glow {
+  opacity: 0.5;
+  animation: mega-glow 2s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes mega-glow {
+  0% { box-shadow: 0 0 10px #5cff32; }
+  33% { box-shadow: 0 0 10px #36c5f4; }
+  66% { box-shadow: 0 0 10px #ff36ab; }
+  100% { box-shadow: 0 0 10px #5cff32; }
+}
+
+/* Анимированная рамка для призыва к действию */
+.cta-border {
+  border: 2px solid transparent;
+  background: linear-gradient(90deg, #5cff32, #36c5f4, #ff36ab, #5cff32);
+  background-size: 400% 400%;
+  animation: gradient-border 8s linear infinite;
+}
+
+@keyframes gradient-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+/* Стили для текстовой ссылки с подчеркиванием */
+.underline-link {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-link:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #ff36ab;
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.underline-link:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

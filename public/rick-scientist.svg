@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Rick Scientist</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#97DFFC" offset="0%"></stop>
+            <stop stop-color="#5CB8E5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Голова -->
+        <path d="M100,20 C140,20 160,50 160,90 C160,130 140,170 100,170 C60,170 40,130 40,90 C40,50 60,20 100,20 Z" fill="#D4F5F5"></path>
+        
+        <!-- Волосы -->
+        <path d="M100,20 C140,20 160,50 160,90 C160,70 155,60 150,50 C145,40 135,30 125,25 C115,20 105,20 100,20 Z" fill="#8CDAFC"></path>
+        <path d="M100,20 C90,20 75,25 65,35 C55,45 45,55 41,75 C37,95 40,110 40,90 C40,50 60,20 100,20 Z" fill="#8CDAFC"></path>
+        <path d="M140,25 C145,30 150,40 155,50 C160,60 165,70 160,80 C155,70 150,60 140,50 C130,40 120,30 140,25 Z" fill="#8CDAFC"></path>
+        
+        <!-- Лицо -->
+        <ellipse fill="#FFFFFF" cx="85" cy="80" rx="12" ry="15"></ellipse>
+        <ellipse fill="#FFFFFF" cx="125" cy="80" rx="12" ry="15"></ellipse>
+        <ellipse fill="#000000" cx="85" cy="80" rx="6" ry="9"></ellipse>
+        <ellipse fill="#000000" cx="125" cy="80" rx="6" ry="9"></ellipse>
+        
+        <!-- Рот и подбородок -->
+        <path d="M85,120 C95,130 105,130 115,120" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M80,135 C90,145 110,145 120,135" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+        
+        <!-- Слюни -->
+        <path d="M100,140 C100,145 100,150 100,155" stroke="#5CFFE5" stroke-width="2" stroke-linecap="round"></path>
+        <circle fill="#5CFFE5" cx="100" cy="158" r="3"></circle>
+        
+        <!-- Лабораторный халат -->
+        <path d="M70,170 C65,180 60,190 55,200 L145,200 C140,190 135,180 130,170 Z" fill="#FFFFFF"></path>
+        
+        <!-- Брови -->
+        <path d="M75,65 C85,60 95,65 100,70" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M125,65 C115,60 105,65 100,70" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+    </g>
+</svg> 

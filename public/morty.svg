@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Morty</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Голова -->
+        <circle fill="#F8D6B3" cx="100" cy="100" r="80"></circle>
+        
+        <!-- Волосы -->
+        <path d="M80,35 C90,25 110,25 120,35 C125,30 130,32 135,35 C140,32 145,30 150,35 C156,40 156,50 150,55 C150,55 130,45 100,45 C70,45 50,55 50,55 C44,50 44,40 50,35 C55,30 60,32 65,35 C70,32 75,30 80,35 Z" fill="#A67C52"></path>
+        
+        <!-- Глаза -->
+        <ellipse fill="#FFFFFF" cx="75" cy="90" rx="15" ry="20"></ellipse>
+        <ellipse fill="#FFFFFF" cx="125" cy="90" rx="15" ry="20"></ellipse>
+        <ellipse fill="#000000" cx="75" cy="90" rx="7" ry="10"></ellipse>
+        <ellipse fill="#000000" cx="125" cy="90" rx="7" ry="10"></ellipse>
+        
+        <!-- Брови -->
+        <path d="M60,75 C70,70 80,73 90,80" stroke="#A67C52" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M140,75 C130,70 120,73 110,80" stroke="#A67C52" stroke-width="2" stroke-linecap="round"></path>
+        
+        <!-- Рот и губы -->
+        <path d="M85,130 C95,140 105,140 115,130" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+        
+        <!-- Уши -->
+        <path d="M30,90 C25,85 25,75 30,70 C35,65 40,65 45,70 C50,75 45,95 40,100 C35,105 30,95 30,90 Z" fill="#F8D6B3"></path>
+        <path d="M170,90 C175,85 175,75 170,70 C165,65 160,65 155,70 C150,75 155,95 160,100 C165,105 170,95 170,90 Z" fill="#F8D6B3"></path>
+        
+        <!-- Выражение лица - испуг -->
+        <path d="M65,70 C75,65 85,70 90,75" stroke="#A67C52" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M135,70 C125,65 115,70 110,75" stroke="#A67C52" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M90,115 C95,110 105,110 110,115" stroke="#000000" stroke-width="2" stroke-linecap="round"></path>
+        
+        <!-- Рубашка -->
+        <path d="M55,180 L145,180 C140,170 135,160 130,155 L70,155 C65,160 60,170 55,180 Z" fill="#FFE142"></path>
+        
+        <!-- Капли пота -->
+        <circle fill="#AFDDF9" cx="50" cy="100" r="3"></circle>
+        <circle fill="#AFDDF9" cx="150" cy="100" r="3"></circle>
+        <circle fill="#AFDDF9" cx="60" cy="70" r="2"></circle>
+        <circle fill="#AFDDF9" cx="140" cy="70" r="2"></circle>
+    </g>
+</svg> 
