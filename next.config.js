@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     turbo: {}
   },
+  output: 'standalone'
 }
 
 module.exports = nextConfig 
