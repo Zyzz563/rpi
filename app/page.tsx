@@ -12,6 +12,7 @@ import MeeseeksBox from '@/components/MeeseeksBox';
 import GlitchAnimation from '@/components/GlitchAnimation';
 import CollectFlurbos from '@/components/CollectFlurbos';
 import CatchMorty from '@/components/CatchMorty';
+import DimensionRoulette from '@/components/DimensionRoulette';
 
 export default function HomePage() {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
@@ -459,6 +460,9 @@ export default function HomePage() {
           <p className="mt-2 text-xs text-gray-400">* Flurbos не имеют реальной ценности и могут исчезнуть в любое время.</p>
         </div>
       </section>
+
+      {/* Рулетка Измерений */}
+      <DimensionRoulette />
 
       {/* Статистика */}
       {statsSection}

@@ -1,6 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import RickNavbar from '../components/RickNavbar'
+import MultiverseTicker from '../components/MultiverseTicker'
+import KonamiEasterEgg from '../components/KonamiEasterEgg'
 
 // Заменяем Inter на пустышку, т.к. мы используем Google Fonts в globals.css
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -23,10 +25,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#220833" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} pb-12`}>
         <RickNavbar />
         {children}
-        
+        <MultiverseTicker />
+        <KonamiEasterEgg />
+
         {/* Глобальная анимация портального фона */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
           <div className="absolute w-full h-full bg-[#1d111f] opacity-90"></div>

@@ -144,6 +144,20 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   100% { box-shadow: 0 0 0 0 rgba(54, 197, 244, 0); }
 }
 
+/* Бегущая строка мультивселенной */
+@keyframes multiverse-ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-multiverse-ticker {
+  animation: multiverse-ticker 45s linear infinite;
+}
+
+.animate-multiverse-ticker:hover {
+  animation-play-state: paused;
+}
+
 /* Применяем глобальные стили */
 .crt-effect {
   position: relative;
